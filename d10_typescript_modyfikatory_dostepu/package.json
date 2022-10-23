@@ -1,15 +1,15 @@
 {
-  "name": "d07_typescript_exercises",
+  "name": "d10_typescript_modyfikatory_dostepu",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
-  "devDependencies": {
-    "typescript": "^4.8.4"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "devDependencies": {
+    "typescript": "^4.8.4"
+  }
 }
