@@ -1,0 +1,20 @@
+{
+  "name": "d12_typescript_enums",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node-fetch": "^2.6.2",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "node-fetch": "^3.2.10"
+  }
+}

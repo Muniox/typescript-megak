@@ -1,10 +1,15 @@
-class Animal {
+abstract class Animal {
     constructor(
         // public - inne klasy mają dostęp
         // private - tylko ta klasa, w której jest zmienna
         // protected - tylko ta klasa, w której jest, ale również te klasy, które rozszerzają
         protected readonly specieName: string,
     ) {}
+}
+
+// const duck = new Animal('duck'); // teraz chcemy zrobić, jeśli chcesz mieć kaczki musisz rozszerzyć klasę animal (klasę abstrakcyjną)
+class duck extends Animal {
+    //właśnie tak
 }
 
 class Human extends Animal {
