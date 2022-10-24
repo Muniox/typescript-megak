@@ -13,7 +13,21 @@ interface SingleTodo {
 interface SingleTodoToCreate {
     userId: number;
     title: string;
+    completed: boolean;
 }
+
+//pierwszy sposób to dwa interfejsy
+// interface SingleTodo {
+//     userId: number;
+//     id: number;
+//     title: string;
+//     completed: boolean;
+// }
+
+//drugi sposób to rozszerzenie interfejsu
+// interface SingleTodo extends SingleTodoToCreate{
+//     id: number;
+// }
 
 class TodoApi {
     private readonly url = 'https://jsonplaceholder.typicode.com/todos';
@@ -28,7 +42,9 @@ class TodoApi {
         return await response.json();
     };
 
-    async create(task: SingleTodoToCreate): Promise<any> {
+    //trzeci sposób to stworzenie Omit
+    // async create(task: Omit<singleTodo, 'id'>): Promise<SingleTodo> {
+    async create(task: SingleTodoToCreate): Promise<SingleTodo> {
         const response = await fetch(`${this.url}/`, {
             method: 'POST',
             body: JSON.stringify(task),
@@ -44,8 +60,10 @@ class TodoApi {
 
 (async () => {
     const todo = new TodoApi();
-    console.log(await todo.create({
+    const newTodo = await todo.create({
         title: 'Wynieść śmieci',
         userId: 1,
-    }))
+        completed: false,
+    });
+    console.log(newTodo.id)
 })();
