@@ -1,0 +1,5 @@
+- Staraj się nie używać export default
+- Eksportuj tylko to, co niezbędne
+- Nie używaj wielu namespace-ów, podczas gdy sprawdzają się one np. w C#, w TypeScript nie są preferowane
+- Nie eksportuj namespace-ów, jeżeli nie musisz
+- 1 klasa = 1 plik
