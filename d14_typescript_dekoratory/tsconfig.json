@@ -3,10 +3,11 @@
     "noImplicitAny": true,
     "preserveConstEnums": true,
     "sourceMap": true,
-    "target": "ESNext",
+    "target": "es6",
     "downlevelIteration": true,
     "lib": ["dom", "es6", "dom.iterable"],
-    "skipLibCheck": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   }
 }
