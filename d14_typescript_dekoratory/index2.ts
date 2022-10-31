@@ -13,8 +13,20 @@ class UserTest {
 
     set name(newName: string) {
         if (!['Bartek', 'Kuba'].includes(newName)) {
-            
+            throw new Error('Invalid name!');
         }
+        this.userName = newName;
+    }
+
+    get gender() {
+        return this.userGender;
+    }
+
+    set gender(newGender: string) {
+        if (!['man', 'woman'].includes(newGender)) {
+            throw new Error('Invalid gender!');
+        }
+        this.userGender = newGender;
     }
 }
 
