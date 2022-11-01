@@ -1,13 +1,16 @@
-const express = require('express');
-const cookieParser = require('cookie-parser');
-const hbs = require('express-handlebars');
-const {HomeRouter} = require("./routes/home");
-const {ConfiguratorRouter} = require("./routes/configurator");
-const {OrderRouter} = require("./routes/order");
-const {handlebarsHelpers} = require("./utils/handlebars-helpers");
-const {COOKIE_BASES, COOKIE_ADDONS} = require("./data/cookies-data");
+import * as express from 'express';
+import * as cookieParser from 'cookie-parser';
+import {engine} from "express-handlebars";
+import {HomeRouter} from "./routers/home";
+import {ConfiguratorRouter} from "./routers/configurator";
+import {OrderRouter} from "./routers/order";
+import {handlebarsHelpers} from "./utils/handlebars-helpers";
+import {COOKIE_BASES, COOKIE_ADDONS} from "./data/cookies-data";
+
 
 class CookieMakerApp {
+    app: express.Express = express();
+
     constructor() {
         this._loadData();
         this._configureApp();
@@ -15,13 +18,13 @@ class CookieMakerApp {
         this._run();
     }
 
-    _configureApp() {
+    _configureApp():void {
         this.app = express();
 
         this.app.use(express.json());
         this.app.use(express.static('public'));
         this.app.use(cookieParser());
-        this.app.engine('.hbs', hbs({
+        this.app.engine('.hbs', engine({
             extname: '.hbs',
             helpers: handlebarsHelpers,
         }));
@@ -40,18 +43,18 @@ class CookieMakerApp {
         });
     }
 
-    showErrorPage(res, description) {
+    showErrorPage(res: express.Response, description: string) {
         res.render('error', {
             description,
         });
     }
 
-    getAddonsFromReq(req) {
+    getAddonsFromReq(req: express.Request) {
         const {cookieAddons} = req.cookies;
         return cookieAddons ? JSON.parse(cookieAddons) : [];
     }
 
-    getCookieSettings(req) {
+    getCookieSettings(req: express.Request) {
         const {cookieBase: base} = req.cookies;
 
         const addons = this.getAddonsFromReq(req);
@@ -60,7 +63,7 @@ class CookieMakerApp {
         const allAddons = Object.entries(this.data.COOKIE_ADDONS);
 
         const sum = (base ? handlebarsHelpers.findPrice(allBases, base) : 0)
-            + addons.reduce((prev, curr) => (
+            + addons.reduce((prev: number, curr: number) => (
                 prev + handlebarsHelpers.findPrice(allAddons, curr)
             ), 0);
 

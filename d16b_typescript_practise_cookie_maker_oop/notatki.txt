@@ -1,2 +1,2 @@
-https://replit.com/@Ami777/MegaK-Professional-Cookie-Maker-OOP#data/cookies-data.js
+https://replit.com/@Ami777/MegaK-Professional-Cookie-Maker-OOP#data/cookies-data.ts
 20:06 min
