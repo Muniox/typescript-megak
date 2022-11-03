@@ -1,19 +1,21 @@
-const express = require('express');
+import {Router, Request, Response} from "express";
+import {CookieMakerApp} from "../index";
 
-class ConfiguratorRouter {
-    constructor(cmapp) {
-        this.cmapp = cmapp;
-        this.router = express.Router();
+
+export class ConfiguratorRouter {
+    public readonly router: Router = Router();
+
+    constructor(private cmapp: CookieMakerApp) {
         this.setUpRoutes();
     }
 
-    setUpRoutes() {
+    private setUpRoutes() {
         this.router.get('/select-base/:baseName', this.selectBase);
         this.router.get('/add-addon/:addonName', this.addAddon);
         this.router.get('/delete-addon/:addonName', this.deleteAddon);
     }
 
-    selectBase = (req, res) => {
+    selectBase = (req: Request, res: Response) => {
         const {baseName} = req.params;
 
         if (!this.cmapp.data.COOKIE_BASES[baseName]) {
@@ -27,7 +29,7 @@ class ConfiguratorRouter {
             });
     };
 
-    addAddon = (req, res) => {
+    private addAddon = (req: Request, res: Response) => {
         const {addonName} = req.params;
 
         if (!this.cmapp.data.COOKIE_ADDONS[addonName]) {
@@ -49,7 +51,7 @@ class ConfiguratorRouter {
             });
     };
 
-    deleteAddon = (req, res) => {
+    deleteAddon = (req: Request, res: Response) => {
         const {addonName} = req.params;
 
         const oldAddons = this.cmapp.getAddonsFromReq(req);
@@ -69,6 +71,3 @@ class ConfiguratorRouter {
 }
 
 
-module.exports = {
-    ConfiguratorRouter,
-};
