@@ -1,17 +1,12 @@
-import {NextFunction, Request, Response} from "express";
-
-
-
 class ValidationError extends Error {}
 
 
-
-const handleError = (err : Error, req: Request, res: Response, next: NextFunction) => {
+const handleError = (err, req, res, next) => {
     // if (err instanceof NotFoundError) {
     //     res
     //         .status(404)
     //         .render('error', {
-    //             message: 'Nie można znaleźć elementu o danym ID'
+    //             message: 'Nie można znaleść elementu o danym ID'
     //         });
     // return;
     // }

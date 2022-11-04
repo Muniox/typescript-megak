@@ -9,8 +9,10 @@
 </ul>
 
 <h2>Dodaj prezent do listy</h2>
-<form action="">
+<form action="/gift" method="POST">
     <label for="name">Nazwa</label>
     <input type="text" id="name" name="name">
-    <button type="button">Dodaj</button>
+    <label for="count">Ilość [szt.]</label>
+    <input type="number" id="count" name="count">
+    <button type="submit">Dodaj</button>
 </form>
