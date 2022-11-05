@@ -1,8 +1,8 @@
-const { ValidationError } = require("../utils/error");
-const { pool } = require("../utils/db");
-const { v4: uuid } = require("uuid");
+import { pool } from "../utils/db";
+import { ValidationError } from "../utils/error";
+import { v4 as uuid } from "uuid";
 
-class GiftRecord {
+export class GiftRecord {
     constructor(obj) {
         if (!obj.name || obj.name.length < 3 || obj.name.length > 55) {
             throw new ValidationError('Nazwa prezentu musi mieć od 3 dp 55 znaków');
@@ -56,8 +56,3 @@ class GiftRecord {
     }
 }
 
-
-
-module.exports = {
-    GiftRecord
-};

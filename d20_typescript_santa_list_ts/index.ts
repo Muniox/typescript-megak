@@ -1,14 +1,15 @@
-require('dotenv').config(); //global
-require('./utils/db'); 
-const express = require("express");
-require('express-async-errors');
-const methodOverride = require("method-override");
-const { engine } = require("express-handlebars");
-const { handleError } = require("./utils/error");
-const { homeRouter } = require("./routers/home");
-const { childRouter } = require("./routers/child");
-const { giftRouter } = require("./routers/gift");
-const { handlebarsHelpers } = require("./utils/handlebars-helpers");
+import * as dotenv from 'dotenv';
+dotenv.config();
+import './utils/db'; 
+import express  from "express";
+import 'express-async-errors';
+import methodOverride from "method-override";
+import { engine } from "express-handlebars";
+import { handleError } from "./utils/error";
+import { homeRouter } from "./routers/home";
+import { childRouter } from "./routers/child";
+import { giftRouter } from "./routers/gift";
+import { handlebarsHelpers } from "./utils/handlebars-helpers";
 
 
 const app = express();

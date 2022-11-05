@@ -1,8 +1,8 @@
-const { Router } = require("express");
-const { ChildRecord } = require("../records/child.record");
-const { GiftRecord } = require("../records/gift.record");
-const { ValidationError } = require('../utils/error');
-const childRouter = Router();
+import { Router } from "express";
+import { ChildRecord } from "../records/child.record";
+import { GiftRecord } from "../records/gift.record";
+import { ValidationError } from "../utils/error";
+export const childRouter = Router();
 
 
 childRouter
@@ -42,6 +42,3 @@ childRouter
     });
 
 
-module.exports = {
-    childRouter
-};

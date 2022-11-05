@@ -1,6 +1,6 @@
-const { Router } = require("express");
-const { GiftRecord } = require("../records/gift.record");
-const giftRouter = Router();
+import { Router } from "express";
+import { GiftRecord } from "../records/gift.record";
+export const giftRouter = Router();
 // const { v4 } = require("uuid");
 
 giftRouter
@@ -20,8 +20,3 @@ giftRouter
         await newGift.insert();
         res.redirect('/gift');
     });
-
-
-module.exports = {
-    giftRouter
-};
