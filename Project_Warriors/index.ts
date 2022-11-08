@@ -1,19 +1,18 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
+import "./utils/db";
 import * as express from 'express';
+import 'express-async-errors';
 import { Express } from 'express';
+import { warriorRoute } from './routes/warrior'
+import { handleError } from './utils/error';
 const app: Express = express();
-
-import { pool } from "./lib/db";
-
 
 app.use(express.static('public'));
 app.use(express.json());
 
-(async () => {
-    const data = (await pool.execute('SELECT * FROM `warriors`'))[0];
-    console.log(data);
-})();
+app.use('/warrior', warriorRoute);
+app.use(handleError);
 
 
 
