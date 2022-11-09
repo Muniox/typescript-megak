@@ -4,16 +4,23 @@ export const warriorRoute = Router();
 
 warriorRoute
     .post('/create', async (req: Request, res: Response) => {
-        //walidacja uuid z frontu
+        //TODO walidacja uuid przychodzącego z frontu
         const warrior = new WarriorRecord(req.body);
             await warrior.insert();
-            res.json('Warrior was saved in database');
+            res.json({
+                message: "Warrior was saved in database"
+            });
     })
 
-    .delete('/delete/:id', (req: Request, res: Response) => {
-
+    .delete('/delete/:id', async (req: Request, res: Response) => {
+        const result = await WarriorRecord.delete(req.params.id)
+        if(result){
+            res.json({
+                message: "warrior was deleted"
+            });
+        }
     })
 
     .get('/:id', async (req: Request, res: Response) => {
-        res.json(await WarriorRecord.find(req.params.id));
+        res.json(WarriorRecord.find(req.params.id));
     })

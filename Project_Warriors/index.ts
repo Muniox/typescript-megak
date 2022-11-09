@@ -12,7 +12,7 @@ app.use(express.static('public'));
 app.use(express.json());
 
 app.use('/warrior', warriorRoute);
-app.use(handleError);
+app.use(handleError); // użycie na samym końcu
 
 
 
