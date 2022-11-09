@@ -7,9 +7,15 @@ warriorRoute
         //walidacja uuid z frontu
         const warrior = new WarriorRecord(req.body);
             await warrior.insert();
-            res.send('ok')
+            res.json('Warrior was saved in database');
     })
 
-    .get('/:id', (req: Request, res: Response) => {
+    .delete('/delete/:id', (req: Request, res: Response) => {
 
+    })
+
+    .get('/:id', async (req: Request, res: Response) => {
+        console.log(req.params.id)
+        console.log(await WarriorRecord.find(req.params.id))
+        res.send('ok');
     })

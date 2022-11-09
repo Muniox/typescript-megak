@@ -1,11 +1,11 @@
-import * as dotenv from 'dotenv';
+import * as dotenv from "dotenv";
 dotenv.config();
 import "./utils/db";
-import * as express from 'express';
-import 'express-async-errors';
-import { Express } from 'express';
-import { warriorRoute } from './routes/warrior'
-import { handleError } from './utils/error';
+import * as express from "express";
+import "express-async-errors";
+import { Express } from "express";
+import { warriorRoute } from "./routes/warrior";
+import { handleError } from "./utils/error";
 const app: Express = express();
 
 app.use(express.static('public'));

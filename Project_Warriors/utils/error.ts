@@ -16,7 +16,7 @@ export const handleError = (err: ErrorRequestHandler, req: Request, res: Respons
 
     res
         .status(err instanceof ValidationError ? 404 : 500)
-        .render('error', {
+        .json({
             message: err instanceof ValidationError ? err.message : 'Przepraszamy, spróbuj ponownie za klika minut',
         });
 };
