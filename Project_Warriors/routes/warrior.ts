@@ -15,7 +15,5 @@ warriorRoute
     })
 
     .get('/:id', async (req: Request, res: Response) => {
-        console.log(req.params.id)
-        console.log(await WarriorRecord.find(req.params.id))
-        res.send('ok');
+        res.json(await WarriorRecord.find(req.params.id));
     })
