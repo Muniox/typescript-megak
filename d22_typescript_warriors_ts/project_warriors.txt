@@ -1,0 +1,72 @@
+ZADANIE KOŃCOWE NA ETAP TYPESCRIPT
+
+Tworzymy grę, w której walczy sie z różnymi wojownikami
+Wojownicy są tworzeni przez inne osoby w systemie.
+
+Aplikacja składa się z 3 części:
+1.Rejestracja wojownikami
+2.Arena walk
+3.Sala sław
+
+Nie będziemy teraz implemetowali jeszcze żadnej autoryzacji i uwierzytelnienia. Czyli każdy może
+stworzyć dowolnego wojownika i dowolnie przeprowadzać walki.
+
+Wszystkie dane są zapisywane w bazie danych.
+
+Rejestracja wojownika polega na wpisywaniu jego danych:
+- Imię - musi być unikalne w stosunku do wszystkich wojowników *
+- Siła
+- Obrona
+- Wytrzymałość
+- Zwinność
+
+Trudność polega na tym, że do rozdania jest łącznie 10 punktów. Każda statystyka musi wynosić min.1. Łącznie statystyki muszą wynosić 10.
+
+Algorytm walki (można go zmodyfikować, to tylko propozycja):
+1. Każdy na początku ma tyle punktów życia (HP) ile wynosi jego wytrzymałość * 10. Każdy ma na początku tyle tarczy (DP) ile wynosi Obrona
+2. Wojownik, który zaczyna wykonuje atak o wartości równej sile
+3. Jeżeli wojownik atakowany ma tarczę + zwinność większą niż siła ataku to:
+    3.1. Odejmowana mu jest tarcza w wysokości ataku.
+        3.2.A) Jeżeli atak był większy niż tarcza, to odejmowana jest mu od życia pozostała ilość ataku.
+        3.2.B) Jeżeli atak był maksymalnie tyle ile wynosi aktualnie tarcza, to nie jest odejmowane życie.
+4. Następnie zmiana kolejności i teraz atakowany zostanie atakującym, a atakujący zostaje atakowanym.
+5. Powtarzamy punkty 2-4 tak długo dopóki ktoś nie umrze, czyli jego HP nie spadnie do min. 0
+Gdy jeden z wojowników umrze, to atakujący zostaje zwycięzcą. Zapisujemy mu w bazie +1 do zwycięstw.
+
+Podczas walki, powinien się generować dokładny log, który zostanie zwrócony na frontend. powinien
+on zwierać szczegółowe informacje - kto kogo atakuje, czy powiodła się obrona, ile zostało zabrane z tarczy itp. **
+
+Sala sław
+
+Jest to miejsce, w kótrym wpisujemy 10 najlepszych śmiałków. Najwyżej pokazujemy tych z największą ilością zwycięwstw. 
+Pokazujemy na liście: pozycję, ilość zwycięstw i imię wojownika. 
+
+*Realizacja: Unique na bazie / Logika / Unique + Logika
+** Możesz zrobić bardzo Ładną wersję tego - poprzez dołączenie kolorów w zależności od typu sytuacji.
+
+
+PLAN!
+V1:
+- Skonfigurować WS - OK
+- Potrzebne paczki i konfiguracja TS - OK
+- Konfiguracja Expressi i folder publiczny - pliki statyczne - OK
+- Ogólna struktura routerów - ścieżek - zaplanować ścieżeki jakie sie pojawią
+    - Strona główna
+        - /
+    - Rejestracja wojownika
+        - Formularz
+        - Zapisywanie
+    - Arena walk
+        - Formularz wyboru wojownika
+        - Przeprowadzenie walki - log walki
+    - Sala sław
+        - Lista najlepszych wojowników
+- Zaplanowanie widoków / ogólna struktura widoków
+- Rekordy
+- Logika związana z tworzeniem wojowników
+- Logika związana z salą sław
+- Logika związana z areną walk
+
+V2:
+- Log walki: Możesz zrobić bardzo ładną wersję tego - poprzez dodanie np. ikon czy innych kolorów w zależności od typu sytuacji.
+- Dodać front-endowy JavaScript, który ułatwi rozdawanie punktów u wojownika
