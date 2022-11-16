@@ -1,67 +1,74 @@
 import {pool} from "../utils/db"
 import { v4 as uuid } from "uuid";
-import { Warrior } from "../types/warrior";
 import { ValidationError } from "../utils/error";
+import { FieldPacket, ResultSetHeader } from "mysql2"
+
+type WarriorRecordResaultFind = [WarriorRecord[], FieldPacket[]];
+type WarriorRecordResaultDelete = [ResultSetHeader, any]
 
 export class WarriorRecord {
-    private id: string
-    private name: string
-    private strength: number
-    private defense: number
-    private durability: number
-    private agility: number
+    //klasa musi posiadać takie same nazwy zmiennych jak wartość kolumn, żeby były przyjęte jako obiekt
+    private warriorId: string
+    private warriorName: string
+    private warriorStrength: number
+    private warriorDefense: number
+    private warriorDurability: number
+    private warriorAgility: number
 
-    constructor(obj: Warrior) {
+    constructor(obj: WarriorRecord) {
         this.valid(obj);
-        this.id = obj.id;
-        this.name = obj.name;
-        this.strength = obj.strength;
-        this.defense = obj.defense;
-        this.durability = obj.durability;
-        this.agility = obj.agility;
+        this.warriorId = obj.warriorId;
+        this.warriorName = obj.warriorName;
+        this.warriorStrength = obj.warriorStrength;
+        this.warriorDefense = obj.warriorDefense;
+        this.warriorDurability = obj.warriorDurability;
+        this.warriorAgility = obj.warriorAgility;
     }
 
-    private valid(obj: Warrior) {
-        if ((obj.strength + obj.defense + obj.durability + obj.agility) > 10) {
+    private valid(obj: WarriorRecord) {
+        if ((obj.warriorStrength + obj.warriorDefense + obj.warriorDurability + obj.warriorAgility) > 10) {
             throw new ValidationError('You can give only 10 points total');
         }
 
-        if (obj.strength < 1 || obj.defense < 1 || obj.durability < 1 || obj.agility < 1) {
+        if (obj.warriorStrength < 1 || obj.warriorDefense < 1 || obj.warriorDurability < 1 || obj.warriorAgility < 1) {
             throw new ValidationError('You should invest at least 1 point in each stat');
         }
 
-        // if (this.id === ) // sprawdzic cz id istnieje
     }
     
     async insert() {
-        this.id = this.id ?? uuid();
-
-        await pool.execute('INSERT INTO `warriors` values(:id, :name, :strength, :defense, :durability, :agility)', {
-            id: this.id,
-            name: this.name,
-            strength: this.strength,
-            defense: this.defense,
-            durability: this.durability,
-            agility: this.agility
-        });
-
-        return this.id;
-    }
-
-    async delete() {
-        if (!this.id) {
-            throw new ValidationError('Warrior by that name don\'t exist');
+        if (WarriorRecord.find(this.warriorId)) {
+            throw new ValidationError('Warrior with that ID exist');
         }
 
-        await pool.execute('DELETE FROM `warrior` WHERE `warriorId` = :id', {
-            id: this.id
+        this.warriorId = this.warriorId ?? uuid();
+
+        await pool.execute('INSERT INTO `warriors` values(:id, :name, :strength, :defense, :durability, :agility)', {
+            id: this.warriorId,
+            name: this.warriorName,
+            strength: this.warriorStrength,
+            defense: this.warriorDefense,
+            durability: this.warriorDurability,
+            agility: this.warriorAgility
         });
+
+        return this.warriorId;
     }
 
-    async find(id: string) {
-        const [result] = await pool.execute('SELECT * FROM `warrior` where `warriorId` = :id', {
+    static async delete(id: string) {
+        if (! (await WarriorRecord.find(id))) {
+            throw new ValidationError('Warrior by that name don\'t exist');
+        }
+        const [result] = await pool.execute('DELETE FROM `warriors` WHERE `warriorId` = :id', {
             id: id
-        });
-        return result
+        }) as WarriorRecordResaultDelete;
+        return result.affectedRows === 0 ? null : true       
+    }
+
+    static async find(id: string) {
+        const [result] = await pool.execute('SELECT * FROM `warriors` WHERE `warriorId` = :id', {
+            id: id
+        }) as WarriorRecordResaultFind;
+        return result.length === 0 ? null : new WarriorRecord(result[0]);
     }
 }

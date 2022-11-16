@@ -5,5 +5,5 @@ export const hallOfFameRouter = Router();
 hallOfFameRouter
 
     .get('/', (req, res) => {
-        res.render('/hall-of-fame/list')
+        res.render('hall-of-fame/list')
     });
