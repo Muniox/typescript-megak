@@ -62,7 +62,7 @@ V1:
     - Sala sław
         - Lista najlepszych wojowników
 - Zaplanowanie widoków / ogólna struktura widoków - OK
-- Rekord wojownika
+- Rekord wojownika - OK
     - Nazwa bazy danych: megak_arena
     - Tabele:
         - warrior

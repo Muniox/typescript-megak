@@ -7,7 +7,9 @@ import { homeRouter } from "./routers/home";
 import { warriorRouter } from "./routers/warrior";
 import { arenaRouter } from "./routers/arena";
 import { hallOfFameRouter } from "./routers/hall-of-fame";
+import { handleError } from "./utils/error";
 import "./utils/db";
+
 
 const app = express();
 
@@ -25,7 +27,7 @@ app.use('/warrior', warriorRouter);
 app.use('/arena', arenaRouter);
 app.use('/hall-of-fame', hallOfFameRouter);
 
-// app.use(handleError);
+app.use(handleError);
 
 app.listen(3000, () => {
     console.log(`server listen on http://127.0.0.1:3000`);
