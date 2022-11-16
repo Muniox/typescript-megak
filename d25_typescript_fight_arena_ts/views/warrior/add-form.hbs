@@ -1,0 +1,24 @@
+<h2>Zarejestruj wojownika</h2>
+<form action="/warrior" method="post">
+    <label for="name" class="stats">
+        Imię:
+        <input type="text" name="name" id="name" minlength="3" maxlength="50">
+    </label>
+    <label for="power" class="stats">
+        Siła:
+        <input type="number" name="power" id="power" value="1" min="1" max="9">
+    </label>
+    <label for="defense" class="stats">
+        Obrona:
+        <input type="number" name="defense" id="defense" value="1" min="1" max="9">
+    </label>
+    <label for="stamina" class="stats">
+        Wytrzymałość:
+        <input type="number" name="stamina" id="stamina" value="1" min="1" max="9">
+    </label>
+    <label for="agility" class="stats">
+        Zwinność:
+        <input type="number" name="agility" id="agility" value="1" min="1" max="9">
+    </label>
+    <button type="submit">Zarejestruj</button>
+</form>
