@@ -81,4 +81,4 @@ V2:
 - Log walki: Możesz zrobić bardzo ładną wersję tego - poprzez dodanie np. ikon czy innych kolorów w zależności od typu sytuacji.
 - Dodać front-endowy JavaScript, który ułatwi rozdawanie punktów u wojownika
 
-skończone na 30:54
+skończone na 26:01

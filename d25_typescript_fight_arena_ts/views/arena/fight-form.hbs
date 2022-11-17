@@ -1,2 +1,6 @@
 <h2>Wybierz wojowników, którzy się ze sobą zmierzą</h2>
-<form action=""></form>
+<form action="/arena/fight" method="post">
+    {{> warrior-select select-name="warrior1"}}
+    {{> warrior-select select-name="warrior2"}}
+    <button type="submit">Rozpocznij walke na śmierć i życie!</button>
+</form>
