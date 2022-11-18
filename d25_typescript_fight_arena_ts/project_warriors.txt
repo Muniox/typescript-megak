@@ -29,6 +29,7 @@ Algorytm walki (można go zmodyfikować, to tylko propozycja):
     3.1. Odejmowana mu jest tarcza w wysokości ataku.
         3.2.A) Jeżeli atak był większy niż tarcza, to odejmowana jest mu od życia pozostała ilość ataku.
         3.2.B) Jeżeli atak był maksymalnie tyle ile wynosi aktualnie tarcza, to nie jest odejmowane życie.
+        3.2.C) Jeżeli warunek 3 nie jest spełniony to od życia odejmujemy atak
 4. Następnie zmiana kolejności i teraz atakowany zostanie atakującym, a atakujący zostaje atakowanym.
 5. Powtarzamy punkty 2-4 tak długo dopóki ktoś nie umrze, czyli jego HP nie spadnie do min. 0
 Gdy jeden z wojowników umrze, to atakujący zostaje zwycięzcą. Zapisujemy mu w bazie +1 do zwycięstw.
@@ -81,4 +82,6 @@ V2:
 - Log walki: Możesz zrobić bardzo ładną wersję tego - poprzez dodanie np. ikon czy innych kolorów w zależności od typu sytuacji.
 - Dodać front-endowy JavaScript, który ułatwi rozdawanie punktów u wojownika
 
-skończone na 34:53
+Dla ambitnych:
+
+44 min z dnia 25

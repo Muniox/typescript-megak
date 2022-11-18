@@ -73,8 +73,9 @@ export class WarriorRecord implements WarriorEntity {
     }
 
     async update(): Promise<void> {
-        await pool.execute('UPDATE `warriors` SET `wins` = :wins', {
+        await pool.execute('UPDATE `warriors` SET `wins` = :wins WHERE id =:id', {
             wins: this.wins,
+            id: this.id
         })
     };
 
@@ -83,7 +84,7 @@ export class WarriorRecord implements WarriorEntity {
             id,
         }) as WarriorRecordResults;
 
-        return results.length === 0 ? null : results[0];
+        return results.length === 0 ? null : new WarriorRecord(results[0]);
     };
 
     static async listAll(): Promise<WarriorRecord[]> {
